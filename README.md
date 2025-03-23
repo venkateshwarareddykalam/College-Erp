@@ -33,3 +33,7 @@ College ERP using MERN Stack
 1. Mobile Responsiveness
 2. Sections other than academics
 3. More freedom to admin while adding new students,admins,faculties or subjects
+
+#Dummy admin Login Credentials
+Username : ADMDUMMY
+Password : 123
