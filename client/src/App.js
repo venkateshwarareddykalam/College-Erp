@@ -26,7 +26,7 @@ import UploadMarks from "./components/faculty/uploadMarks/UploadMarks";
 import AdminLogin from "./components/login/adminLogin/AdminLogin";
 import FacultyLogin from "./components/login/facultyLogin/FacultyLogin";
 import Login from "./components/login/Login";
-
+import HomePage from "./components/HomePage";
 import StudentLogin from "./components/login/studentLogin/StudentLogin";
 import StudentFirstTimePassword from "./components/student/profile/update/firstTimePassword/FirstTimePassword";
 import StudentHome from "./components/student/StudentHome";
@@ -46,10 +46,11 @@ import CreateNotice from "./components/admin/createNotice/CreateNotice";
 const App = () => {
   return (
     <Routes>
-      <Route exact path="/" element={<Login />} />
-
+     { /*<Route exact path="/" element={<Login />} />*/}
+      <Route exact path="/" element={<HomePage />} />
+      <Route exact path="/login" element={<Login />} /> 
       {/* Admin  */}
-
+      <Route path="/login/adminlogin" element={<AdminLogin />} />
       <Route path="/login/adminlogin" element={<AdminLogin />} />
       <Route path="/admin/home" element={<AdminHome />} />
       <Route path="/admin/profile" element={<AdminProfile />} />
