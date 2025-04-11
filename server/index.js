@@ -8,6 +8,7 @@ import adminRoutes from "./routes/adminRoutes.js";
 import studentRoutes from "./routes/studentRoutes.js";
 import facultyRoutes from "./routes/facultyRoutes.js";
 import { addDummyAdmin } from "./controller/adminController.js";
+
 const app = express();
 dotenv.config();
 app.use(bodyParser.json({ limit: "30mb", extended: true }));

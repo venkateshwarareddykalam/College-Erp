@@ -217,17 +217,18 @@ export const uploadMarks = async (req, res) => {
     res.status(500).json(errors);
   }
 };
-
+/*
 export const markAttendance = async (req, res) => {
-  try {
-    const { selectedStudents, subjectName, department, year, section } =
-      req.body;
-
+  try 
+  {
+    const { selectedStudents, subjectName, department, year, section } =  req.body;
+    console.log(selectedStudents);
     const sub = await Subject.findOne({ subjectName });
 
     const allStudents = await Student.find({ department, year, section });
 
-    for (let i = 0; i < allStudents.length; i++) {
+    for (let i = 0; i < allStudents.length; i++) 
+    {
       const pre = await Attendence.findOne({
         student: allStudents[i]._id,
         subject: sub._id,
@@ -239,7 +240,8 @@ export const markAttendance = async (req, res) => {
         });
         attendence.totalLecturesByFaculty += 1;
         await attendence.save();
-      } else {
+      } 
+      else {
         pre.totalLecturesByFaculty += 1;
         await pre.save();
       }
@@ -268,5 +270,59 @@ export const markAttendance = async (req, res) => {
     const errors = { backendError: String };
     errors.backendError = error;
     res.status(500).json(errors);
+  }
+};
+*/
+export const markAttendance = async (req, res) => {
+  try {
+    const { selectedStudents, subjectName, department, year, section } = req.body;
+
+    // Step 1: Validate the subject
+    const sub = await Subject.findOne({ subjectName });
+    if (!sub) {
+      return res.status(404).json({ message: "Subject not found" });
+    }
+
+    // Step 2: Fetch all students in the class
+    const allStudents = await Student.find({ department, year, section });
+    const allStudentIds = new Set(allStudents.map(student => student._id.toString()));
+
+    // Step 3: Filter selected students to only include those in the class
+    const selectedStudentsInClass = selectedStudents.filter(id => allStudentIds.has(id));
+
+    // Step 4: Update attendance for all students in one pass
+    for (const student of allStudents) {
+      const studentId = student._id.toString();
+      const pre = await Attendence.findOne({
+        student: student._id,
+        subject: sub._id,
+      });
+
+      if (!pre) {
+        // New record: Set initial values
+        const attendence = new Attendence({
+          student: student._id,
+          subject: sub._id,
+          totalLecturesByFaculty: 1, // One new lecture conducted
+          lectureAttended: selectedStudentsInClass.includes(studentId) ? 1 : 0, // Attended or not
+        });
+        await attendence.save();
+      } else {
+        // Existing record: Increment totals
+        pre.totalLecturesByFaculty += 1; // One new lecture conducted
+        if (selectedStudentsInClass.includes(studentId)) {
+          pre.lectureAttended += 1; // Student attended
+        }
+        // Step 5: Validate to prevent attended > total
+        if (pre.lectureAttended > pre.totalLecturesByFaculty) {
+          pre.lectureAttended = pre.totalLecturesByFaculty; // Cap attended at total
+        }
+        await pre.save();
+      }
+    }
+
+    res.status(200).json({ message: "Attendance marked successfully" });
+  } catch (error) {
+    res.status(500).json({ backendError: error.message });
   }
 };

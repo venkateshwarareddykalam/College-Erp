@@ -1,0 +1,446 @@
+/* --- CSS Variables --- */
+:root {
+    /* Light Theme (Default) */
+    --bg-color: #fdfdfd;
+    --bg-color-alt: #eef2f9; /* Light blue/gray */
+    --text-color: #444;
+    --text-color-light: #666;
+    --heading-color: #1a237e; /* Dark CVR Blue */
+    --primary-color: #0d47a1; /* Standard Link Blue */
+    --accent-color: #ff6f00; /* CVR Orange */
+    --accent-color-darker: #e65100;
+    --border-color: #e0e0e0;
+    --card-bg: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.07);
+    --nav-bg: rgba(255, 255, 255, 0.98);
+    --nav-text-color: #1a237e;
+    --nav-shadow: rgba(0, 0, 0, 0.08);
+    --hero-overlay-start: rgba(0, 34, 68, 0.7);
+    --hero-overlay-end: rgba(13, 71, 161, 0.6);
+    --hero-text-color: #ffffff;
+    --footer-bg: #001f3f; /* Dark Navy */
+    --footer-text-color: #a0b2c8;
+    --footer-link-color: #a0b2c8;
+    --footer-heading-color: #ffffff;
+    --footer-bottom-bg: rgba(0, 0, 0, 0.2);
+    --footer-bottom-text: #8a9bb3;
+    --logo-light-display: block;
+    --logo-dark-display: none;
+
+    /* Transitions */
+    --transition-speed: 0.3s;
+}
+
+/* --- Basic Reset & Defaults --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.7;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+     font-family: 'Poppins', sans-serif;
+     font-weight: 600;
+     color: var(--heading-color);
+     transition: color var(--transition-speed) ease;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color var(--transition-speed) ease;
+}
+a:hover {
+    color: var(--accent-color);
+}
+
+ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+.section-container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+
+/* Hide the actual checkbox */
+.theme-toggle-input { display: none; }
+
+/* Overall Page Container (to help with pure CSS theme scoping) */
+.page-container {
+    background-color: var(--bg-color); /* Apply background here too */
+     transition: background-color var(--transition-speed) ease;
+}
+
+
+/* --- Navigation Bar --- */
+.navbar {
+    background-color: var(--nav-bg);
+    box-shadow: 0 3px 15px var(--nav-shadow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+.nav-container { display: flex; justify-content: center; align-items: center; height: 75px; max-width: 1300px; margin: 0 auto; padding: 0 25px; transition: height 0.3s ease; }
+.nav-logo img { height: 55px; }
+#logo-light { display: var(--logo-light-display); }
+#logo-dark { display: var(--logo-dark-display); }
+
+.nav-menu { display: flex; align-items: center; }
+.nav-item { position: relative; margin-left: 10px; }
+
+.nav-link {
+    display: flex; /* Use flex to align text and potential icon */
+    align-items: center;
+    padding: 28px 18px;
+    color: var(--nav-text-color);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color var(--transition-speed) ease, background-color var(--transition-speed) ease;
+    position: relative;
+    white-space: nowrap; /* Prevent wrapping */
+}
+/* Down arrow for top-level items with submenu */
+.nav-item.has-submenu > .nav-link::after {
+    content: '\f078'; /* Font Awesome chevron-down */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.7em;
+    margin-left: 8px;
+    transition: transform var(--transition-speed) ease;
+}
+.nav-item:hover > .nav-link::after {
+    transform: rotate(180deg);
+}
+
+/* Underline effect for active/hover */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent-color);
+    transition: width var(--transition-speed) ease;
+    border-radius: 2px;
+}
+.nav-link:hover,
+.nav-link.active {
+    color: var(--accent-color);
+}
+.nav-link:hover::before,
+.nav-link.active::before {
+    width: 60%;
+}
+
+/* --- Submenu Styling (Matching Image) --- */
+.submenu {
+    display: block;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background-color: var(--card-bg); /* Use variable */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Standard shadow */
+    border-radius: 0 0 5px 5px; /* Rounded bottom corners */
+    padding: 5px 0; /* Reduced padding */
+    min-width: 240px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scaleY(0.95);
+    transform-origin: top center;
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease, background-color var(--transition-speed) ease;
+    z-index: 1001;
+    border-top: 3px solid var(--accent-color); /* Orange top border */
+}
+
+.submenu li {
+    position: relative; /* Needed for submenu-level-2 positioning */
+}
+
+.submenu li a {
+    display: flex; /* Use flex for alignment */
+    justify-content: space-between; /* Push arrow to the right */
+    align-items: center;
+    padding: 10px 20px; /* Adjusted padding */
+    color: var(--text-color); /* Use text color variable */
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    border-left: 3px solid transparent; /* Placeholder for hover effect */
+    margin-left: -3px; /* Counteract border width */
+}
+
+/* Arrow for submenu items that have children */
+.submenu li.has-submenu > a::after {
+    content: '>'; /* Simple greater-than sign */
+    font-family: sans-serif; /* Ensure consistent rendering */
+    font-weight: bold;
+    margin-left: 15px;
+    font-size: 1em;
+    color: var(--text-color-light); /* Lighter color for arrow */
+    transition: color var(--transition-speed) ease;
+}
+
+/* Hover state for submenu items */
+.submenu li:hover > a {
+    background-color: var(--bg-color-alt); /* Use light alt background */
+    color: var(--accent-color); /* Orange text on hover */
+    border-left-color: var(--accent-color); /* Show orange left border */
+}
+/* Make arrow orange on hover too */
+.submenu li:hover > a::after {
+    color: var(--accent-color);
+}
+
+
+/* Show Submenu on Hover */
+.nav-item.has-submenu:hover > .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scaleY(1);
+    top: 100%;
+}
+
+/* Second Level Submenu */
+.submenu .submenu-level-2 {
+    top: -8px; /* Adjusted top align with parent item padding (approx) */
+    left: 100%;
+    border-radius: 0 5px 5px 0; /* Adjust rounding */
+    transform: translateX(10px) scaleX(0.95);
+    transform-origin: left center;
+    border-top: none; /* No top border */
+    border-left: 1px solid var(--border-color); /* Add subtle left border */
+    padding: 5px 0; /* Match parent padding */
+    margin-left: 0; /* Reset margin */
+     transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+.submenu li.has-submenu:hover > .submenu-level-2 {
+     opacity: 1;
+    visibility: visible;
+    transform: translateX(0) scaleX(1);
+}
+
+
+/* --- Theme Toggle Switch --- */
+.theme-switch {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--bg-color-alt);
+    border-radius: 20px;
+    padding: 4px;
+    position: relative;
+    width: 55px; /* Width of the switch */
+    height: 28px; /* Height of the switch */
+    margin-left: 20px; /* Space from nav items */
+    transition: background-color var(--transition-speed) ease;
+}
+.theme-switch::before { /* The toggle knob */
+    content: '';
+    position: absolute;
+    width: 20px; /* Size of the knob */
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--card-bg); /* Knob color */
+    top: 4px;
+    left: 4px;
+    transition: transform var(--transition-speed) ease, background-color var(--transition-speed) ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.switch-icon {
+    font-size: 0.8rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity var(--transition-speed) ease, color var(--transition-speed) ease;
+    color: var(--accent-color); /* Default to orange */
+}
+.switch-icon.light { left: 7px; opacity: 1; }
+.switch-icon.dark { right: 7px; opacity: 0; }
+
+/* --- Hero Section --- */
+.hero-section { min-height: 650px; height: 100vh; position: relative; display: flex; justify-content: center; align-items: center; text-align: center; color: var(--hero-text-color); background-image: url('https://cvr.ac.in/p/p97354601382443/DSCF2412-HDR.jpg'); background-size: cover; background-position: center center; overflow: hidden; }
+.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, var(--hero-overlay-start), var(--hero-overlay-end)); z-index: 1; transition: background var(--transition-speed) ease; }
+.hero-content { position: relative; z-index: 2; max-width: 850px; padding: 20px; animation-delay: 0.2s; }
+.hero-content h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; margin-bottom: 20px; color: var(--hero-text-color); text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4); animation: slideInUp 0.8s ease-out forwards; opacity: 0; }
+.hero-content p { font-size: clamp(1.1rem, 3vw, 1.4rem); font-weight: 300; margin-bottom: 40px; color: rgba(255, 255, 255, 0.9); text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3); animation: slideInUp 0.8s ease-out 0.3s forwards; opacity: 0; }
+.cta-button { display: inline-block; background-color: var(--accent-color); color: #fff; padding: 15px 35px; border-radius: 50px; font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; transition: background-color var(--transition-speed) ease, transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); animation: zoomIn 0.8s ease-out 0.6s forwards; opacity: 0; }
+.cta-button i { margin-left: 8px; transition: transform 0.3s ease; }
+.cta-button:hover { background-color: var(--accent-color-darker); transform: translateY(-4px); box-shadow: 0 8px 20px rgba(255, 111, 0, 0.4); color: #fff; }
+.cta-button:hover i { transform: translateX(5px); }
+.hero-scroll-down { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 3; animation: bounce 2s infinite; }
+.hero-scroll-down a { color: rgba(255, 255, 255, 0.7); font-size: 1.8rem; transition: color 0.3s ease; }
+.hero-scroll-down a:hover { color: #fff; }
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-15px);} 60% {transform: translateX(-50%) translateY(-8px);} }
+
+/* --- Content Sections --- */
+.content-section { padding: 80px 0; transition: background-color var(--transition-speed) ease; }
+.content-section:nth-of-type(even) { background-color: var(--bg-color-alt); }
+.content-section h2 { text-align: center; font-size: 2.5rem; font-weight: 700; color: var(--heading-color); margin-bottom: 25px; position: relative; display: inline-block; left: 50%; transform: translateX(-50%); }
+.content-section h2::after { content: ''; display: block; width: 80px; height: 4px; background-color: var(--accent-color); margin: 15px auto 0; border-radius: 2px; transition: background-color var(--transition-speed) ease; }
+.content-section > .section-container > p { font-size: 1.1rem; max-width: 750px; margin: 0 auto 40px auto; text-align: center; color: var(--text-color-light); line-height: 1.8; transition: color var(--transition-speed) ease; }
+.link-button { display: inline-block; background-color: var(--heading-color); color: #fff; padding: 12px 28px; border-radius: 5px; font-weight: 500; font-size: 1rem; transition: background-color var(--transition-speed) ease, transform 0.2s ease, box-shadow 0.3s ease; margin-top: 20px; }
+.link-button i { margin-left: 8px; }
+.link-button:hover { background-color: var(--primary-color); transform: translateY(-3px); box-shadow: 0 4px 10px rgba(26, 35, 126, 0.3); color: #fff; }
+
+/* About Section Specific */
+.about-section .section-container { padding: 60px 25px; }
+.about-content { display: flex; align-items: center; gap: 50px; }
+.about-text { flex: 1; }
+.about-image { flex-basis: 45%; max-width: 500px; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px var(--card-shadow); transition: box-shadow var(--transition-speed) ease; }
+.about-image img { transition: transform 0.4s ease; }
+.about-image:hover img { transform: scale(1.05); }
+.about-text p { font-size: 1.05rem; color: var(--text-color); margin-bottom: 25px; transition: color var(--transition-speed) ease; }
+.about-section h2 { text-align: left; left: 0; transform: none; margin-bottom: 20px; } /* Override general h2 centering */
+.about-section h2::after { margin: 15px 0 0 0; }
+
+/* Highlights Section Specific */
+.highlight-bg { background-color: var(--bg-color-alt); }
+.highlights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 30px; margin-top: 50px; }
+.highlight-card { background-color: var(--card-bg); border-radius: 10px; box-shadow: 0 5px 20px var(--card-shadow); overflow: hidden; transition: transform 0.3s ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease; display: flex; flex-direction: column; }
+.highlight-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(26, 35, 126, 0.12); } /* Keep shadow subtle */
+.highlight-card .card-image { height: 180px; background-size: cover; background-position: center; transition: transform 0.4s ease; }
+.highlight-card:hover .card-image { transform: scale(1.03); }
+.highlight-card .card-content { padding: 25px; flex-grow: 1; }
+.highlight-card h3 { font-size: 1.3rem; color: var(--heading-color); margin-bottom: 12px; display: flex; align-items: center; transition: color var(--transition-speed) ease; }
+.icon-left { color: var(--accent-color); margin-right: 10px; font-size: 1.2em; transition: color var(--transition-speed) ease;}
+.highlight-card p { font-size: 0.95rem; color: var(--text-color-light); line-height: 1.6; transition: color var(--transition-speed) ease; }
+
+/* Department Snippet Specific */
+#dept-snippet { padding-bottom: 100px; }
+.dept-links { margin-top: 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px 20px; }
+.dept-badge { display: inline-block; background-color: var(--bg-color-alt); color: var(--primary-color); padding: 10px 25px; border-radius: 50px; font-size: 1rem; font-weight: 500; transition: all var(--transition-speed) ease; border: 1px solid var(--border-color); }
+.dept-badge:hover { background-color: var(--heading-color); color: #fff; transform: translateY(-3px); box-shadow: 0 4px 10px rgba(26, 35, 126, 0.2); border-color: var(--heading-color); }
+.dept-badge i { margin-left: 5px; }
+.dept-badge.more { background-color: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+.dept-badge.more:hover { background-color: var(--accent-color-darker); color: #fff; box-shadow: 0 4px 10px rgba(255, 111, 0, 0.3); border-color: var(--accent-color-darker); }
+
+/* --- Footer --- */
+footer { background-color: var(--footer-bg); color: var(--footer-text-color); padding-top: 60px; transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+.footer-col h4 { color: var(--footer-heading-color); font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 10px; transition: color var(--transition-speed) ease;}
+.footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 50px; height: 2px; background-color: var(--accent-color); transition: background-color var(--transition-speed) ease; }
+.footer-col p { margin-bottom: 10px; line-height: 1.8; }
+.footer-col.about p:first-of-type { font-weight: 500; }
+.footer-col.links ul li { margin-bottom: 12px; }
+.footer-col.links ul li a { color: var(--footer-link-color); transition: color var(--transition-speed) ease, padding-left 0.3s ease; }
+.footer-col.links ul li a:hover { color: var(--accent-color); padding-left: 8px; }
+.footer-col.contact-info p { display: flex; align-items: center; }
+.footer-col.contact-info i { color: var(--accent-color); margin-right: 12px; width: 20px; text-align: center; transition: color var(--transition-speed) ease; }
+.social-links { margin-top: 20px; }
+.social-links a { display: inline-block; width: 40px; height: 40px; background-color: rgba(255, 255, 255, 0.1); color: #fff; border-radius: 50%; text-align: center; line-height: 40px; margin-right: 10px; transition: background-color var(--transition-speed) ease, transform 0.3s ease; font-size: 1rem; }
+.social-links a:hover { background-color: var(--accent-color); transform: scale(1.1); color: #fff; }
+.footer-bottom { background-color: var(--footer-bottom-bg); padding: 20px 0; text-align: center; font-size: 0.9rem; color: var(--footer-bottom-text); transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease; }
+
+/* --- Animations --- */
+@keyframes slideInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes zoomIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+.animate-on-scroll { opacity: 0; animation: fadeInScroll 0.8s ease-out forwards; }
+@keyframes fadeInScroll { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- Dark Theme Styles (Triggered by Checkbox) --- */
+#theme-toggle:checked ~ .page-container {
+    --bg-color: #1a1a1a; /* Darker background */
+    --bg-color-alt: #2a2a2a; /* Slightly lighter dark */
+    --text-color: #d1d1d1; /* Light gray text */
+    --text-color-light: #a0a0a0; /* Lighter gray */
+    --heading-color: #e8eaf6; /* Light lavender blue */
+    --primary-color: #90caf9; /* Lighter blue for links */
+    --accent-color: #ffab40; /* Slightly lighter orange */
+    --accent-color-darker: #ff9100;
+    --border-color: #444; /* Darker border */
+    --card-bg: #252525; /* Dark card */
+    --card-shadow: rgba(0, 0, 0, 0.2); /* Darker shadow */
+    --nav-bg: rgba(30, 30, 30, 0.98); /* Dark nav */
+    --nav-text-color: #e0e0e0; /* Light nav text */
+    --nav-shadow: rgba(0, 0, 0, 0.3);
+    --hero-overlay-start: rgba(10, 10, 10, 0.8); /* Darker overlay */
+    --hero-overlay-end: rgba(40, 40, 40, 0.7);
+    --hero-text-color: #f5f5f5; /* Slightly off-white */
+    --footer-bg: #111111; /* Very dark footer */
+    --footer-text-color: #999;
+    --footer-link-color: #aaa;
+    --footer-heading-color: #e0e0e0;
+    --footer-bottom-bg: rgba(0, 0, 0, 0.4);
+    --footer-bottom-text: #777;
+    --logo-light-display: none; /* Hide light logo */
+    --logo-dark-display: block; /* Show dark logo */
+}
+
+/* Apply the variable changes to the page container */
+#theme-toggle:checked ~ .page-container {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+/* Target specific elements within the container if needed, but variables should cover most */
+#theme-toggle:checked ~ .page-container .highlight-card:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); /* Adjust hover shadow */
+}
+
+/* Styles for the theme switch itself when checked */
+#theme-toggle:checked + .page-container .theme-switch::before { /* Target knob relative to toggle */
+    transform: translateX(27px); /* Move knob to the right */
+}
+#theme-toggle:checked + .page-container .theme-switch .switch-icon.light { opacity: 0; }
+#theme-toggle:checked + .page-container .theme-switch .switch-icon.dark { opacity: 1; }
+#theme-toggle:checked + .page-container .theme-switch {
+    background-color: #555; /* Darker switch background */
+}
+
+
+/* --- Responsive Design (Additions/Adjustments) --- */
+@media (max-width: 1024px) {
+    /* Keep existing mobile styles */
+    .nav-menu { /* Ensure mobile menu uses theme vars */
+        background-color: var(--card-bg);
+        box-shadow: -5px 0 15px var(--nav-shadow);
+    }
+    .nav-item { border-bottom: 1px solid var(--border-color); }
+    .nav-link { color: var(--nav-text-color); }
+    .submenu { background-color: var(--bg-color-alt); } /* Submenu background */
+    .submenu li a { color: var(--text-color); }
+    .submenu li:hover > a { background-color: var(--bg-color); color: var(--accent-color); } /* Hover state */
+    .submenu .submenu-level-2 { background-color: var(--bg-color); border-left-color: var(--border-color); } /* Level 2 background */
+
+    .hamburger i { color: var(--nav-text-color); }
+     .theme-switch { margin-right: 10px; margin-left: auto; } /* Adjust switch position next to hamburger */
+     .nav-container { padding: 0 15px 0 25px; } /* Adjust padding */
+}
+
+/* Adjust other responsive breakpoints as needed */
+@media (max-width: 768px) {
+    html { font-size: 15px; }
+    /* ... other 768px styles ... */
+}
+
+@media (max-width: 480px) {
+    html { font-size: 14px; }
+     .nav-container { padding: 0 10px 0 15px; }
+     .theme-switch { width: 50px; height: 26px; }
+     .theme-switch::before { width: 18px; height: 18px; }
+     #theme-toggle:checked + .page-container .theme-switch::before { transform: translateX(24px); }
+     .switch-icon { font-size: 0.7rem; }
+     .switch-icon.light { left: 6px; }
+     .switch-icon.dark { right: 6px; }
+
+    /* ... other 480px styles ... */
+}
