@@ -93,7 +93,7 @@ body {
 /* Hero Section */
 .hero-section {
   height: 80vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://cvr.ac.in/p/p97354601382443/DJI_0767.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -342,7 +342,8 @@ body {
   justify-content: center;
   width: 40px;
   height: 40px;
-  background-color: #2d3748;
+  
+  background-image: url('https://cvr.ac.in/p/p97354601382443/DJI_0767.jpg');
   border-radius: 50%;
   color: #fff;
   text-decoration: none;

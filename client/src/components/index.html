@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVR College of Engineering - Welcome</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons (Sun/Moon, Arrows) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Hidden Checkbox for Theme Toggle -->
+    <input type="checkbox" id="theme-toggle" class="theme-toggle-input">
+
+    <!-- The rest of the page content follows the checkbox -->
+    <div class="page-container">
+
+        <!-- Navigation Bar -->
+        <nav class="navbar" style="position: relative;">
+            <div class="nav-container">
+                <a href="#home" class="nav-logo">
+                    <!-- IMPORTANT: Replace with actual CVR Logo path -->
+                    <img src="cvr.png" alt="CVR College Logo" id="logo-light">
+                    <img src="cvr.png" alt="CVR College Logo Dark" id="logo-dark"> <!-- Optional: Add a logo variant for dark mode -->
+                </a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                    <li class="nav-item has-submenu">
+                        <!-- Removed FontAwesome icon, using CSS ::after -->
+                        <a href="#about" class="nav-link">About Us</a>
+                        <ul class="submenu">
+                            <li><a href="#">Vision & Mission</a></li>
+                            <li><a href="#">Chairman's Message</a></li>
+                            <li><a href="#">Cherabuddi Society</a></li>
+                            <li><a href="#">Governing Body</a></li>
+                            <li><a href="#">Academic Committee</a></li>
+                            <li><a href="#">Academic Council</a></li>
+                            <li><a href="#">Board of Studies</a></li>
+                            <li><a href="#">Director</a></li>
+                            <li><a href="#">Principal</a></li>
+                            <li class="has-submenu">
+                                <a href="#">Deans</a>
+                                <ul class="submenu submenu-level-2">
+                                    <li><a href="#">Dean, Academics</a></li>
+                                    <li><a href="#">Dean, Planning</a></li>
+                                    <li><a href="#">Dean, Research</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-submenu">
+                                 <a href="#">Associate Deans</a>
+                                 <ul class="submenu submenu-level-2">
+                                    <li><a href="#">A. Dean, Academics</a></li>
+                                    <li><a href="#">A. Dean, Accreditations</a></li>
+                                    <li><a href="#">A. Dean, Alumni Affairs</a></li>
+                                    <li><a href="#">A. Dean, Approvals</a></li>
+                                    <li><a href="#">A. Dean, ET</a></li>
+                                    <li><a href="#">A. Dean, Faculty Affairs</a></li>
+                                    <li><a href="#">A. Dean, Hostel Affairs</a></li>
+                                    <li><a href="#">A. Dean, Research</a></li>
+                                    <li><a href="#">A. Dean, Student Affairs</a></li>
+                                 </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-submenu">
+                        <a href="#academics" class="nav-link">Academics</a>
+                         <ul class="submenu">
+                            <li><a href="#">Courses Offered</a></li>
+                            <li><a href="#">Course Outcomes</a></li>
+                            <li><a href="#">Examination Branch</a></li>
+                            <li><a href="#">Academic Calendars</a></li>
+                            <li><a href="#">Syllabuses</a></li>
+                            <li><a href="#">Student Feedback</a></li>
+                            <li><a href="#">Results</a></li>
+                         </ul>
+                    </li>
+                    <li class="nav-item has-submenu">
+                        <a href="#departments" class="nav-link">Departments</a>
+                        <ul class="submenu">
+                           <li><a href="#">Civil</a></li>
+                           <li><a href="#">CSE</a></li>
+                           <li><a href="#">CSE (AI&ML)</a></li>
+                           <li><a href="#">CSE (CS)</a></li>
+                           <li><a href="#">CSE (DS)</a></li>
+                           <li><a href="#">ECE</a></li>
+                           <li><a href="#">EEE</a></li>
+                           <li><a href="#">EIE</a></li>
+                           <li><a href="#">H&S</a></li>
+                           <li><a href="#">IT</a></li>
+                           <li><a href="#">Mechanical</a>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="#research" class="nav-link">Research</a></li>
+                    <li class="nav-item has-submenu">
+                        <a href="#infrastructure" class="nav-link">Infrastructure</a>
+                         <ul class="submenu">
+                            <li><a href="#">Campus</a></li>
+                            <li><a href="#">Library</a></li>
+                            <li><a href="#">Sports</a></li>
+                            <li><a href="#">Computing Infrastructure</a></li>
+                            <li><a href="#">Labs</a></li>
+                            <li><a href="#">Hostel</a></li>
+                            <li><a href="#">Student Centre</a></li>
+                         </ul>
+                    </li>
+                    <li class="nav-item"><a href="#placements" class="nav-link">Placements</a></li>
+                    <li class="nav-item"><a href="#alumni" class="nav-link">Alumni</a></li>
+                    <li class="nav-item has-submenu">
+                        <a href="#more" class="nav-link">Login</a>
+                        <ul class="submenu">
+                            <li><a href="#">Student Login</a></li>
+                           <li><a href="#">Faculty Login</a></li>
+                           <li><a href="#">Admin Login</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact Us</a></li>
+                    <li class="nav-item has-submenu">
+                        <a href="#" class="nav-link">More</a>
+                        <ul class="submenu">
+                            <li><a href="#">EDC / IIC</a></li>
+                            <li class="has-submenu">
+                                <a href="#">Media</a>
+                                <ul class="submenu submenu-level-2">
+                                    <li><a href="#">Videos</a></li>
+                                    <li><a href="#">Photos</a></li>
+                                    <li><a href="#">Print Media</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="#">Chapters</a>
+                                <ul class="submenu submenu-level-2">
+                                    <li><a href="#">CEA</a></li>
+                                    <li><a href="#">CSI</a></li>
+                                    <li><a href="#">Google GDG</a></li>
+                                    <li><a href="#">ICI</a></li>
+                                    <li><a href="#">IEEE</a></li>
+                                    <li><a href="#">NSS</a></li>
+                                    <li><a href="#">ISTE</a></li>
+                                </ul>
+                            </li>
+                             <li><a href="#">Arts & Culture Clubs</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Theme Toggle Switch -->
+                <label for="theme-toggle" class="theme-switch">
+                    <span class="switch-icon light"><i class="fas fa-sun"></i></span>
+                    <span class="switch-icon dark"><i class="fas fa-moon"></i></span>
+                </label>
+
+                 <!-- Basic Mobile Menu Toggle - Needs JS to function -->
+                <div class="hamburger">
+                     <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <header id="home" class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content animate-on-load">
+                <h1>Welcome to CVR College of Engineering</h1>
+                <p>Inspiring Innovation, Fostering Excellence.</p>
+                <a href="#about" class="cta-button">Discover More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="hero-scroll-down">
+                 <a href="#about-snippet"><i class="fas fa-chevron-down"></i></a>
+            </div>
+        </header>
+
+        <!-- About Snippet Section -->
+        <section id="about-snippet" class="content-section about-section">
+            <div class="section-container animate-on-scroll">
+                 <div class="about-content">
+                    <div class="about-text">
+                        <h2>About CVR College of Engineering</h2>
+                        <p>Established in 2001, CVR College of Engineering stands at the forefront of technical education in Telangana. We are committed to nurturing talent, fostering innovation, and providing a world-class learning environment. Our focus is on holistic development, ensuring our graduates are not just skilled engineers but also responsible citizens.</p>
+                         <a href="#about" class="link-button">Learn More <i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <div class="about-image">
+                        <!-- IMPORTANT: Replace with an actual image of the college building or students -->
+                        <img src="https://cvr.ac.in/p/p97354601382443/DSCF2265-HDR.jpg" alt="About CVR College">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Links / Highlights Section -->
+        <section id="highlights" class="content-section highlight-bg">
+            <div class="section-container">
+                <h2 class="animate-on-scroll">Why Choose CVR?</h2>
+                <div class="highlights-grid">
+                    <div class="highlight-card animate-on-scroll">
+                         <!-- IMPORTANT: Replace with relevant CVR image -->
+                        <div class="card-image" style="background-image: url('https://cvr.ac.in/p/p97354601382443/DJI_0778.jpg');"></div>
+                        <div class="card-content">
+                            <h3><i class="fas fa-university icon-left"></i>Academic Excellence</h3>
+                            <p>State-of-the-art infrastructure, experienced faculty, and NBA accredited programs.</p>
+                        </div>
+                    </div>
+                    <div class="highlight-card animate-on-scroll" style="animation-delay: 0.15s;">
+                         <!-- IMPORTANT: Replace with relevant CVR image -->
+                         <div class="card-image" style="background-image: url('https://cvr.ac.in/home4/images/2024placementsavgsalary.jpg');"></div>
+                         <div class="card-content">
+                            <h3><i class="fas fa-briefcase icon-left"></i>Top Placements</h3>
+                            <p>Consistent record of placing students in top MNCs and core companies.</p>
+                        </div>
+                    </div>
+                    <div class="highlight-card animate-on-scroll" style="animation-delay: 0.3s;">
+                         <!-- IMPORTANT: Replace with relevant CVR image -->
+                        <div class="card-image" style="background-image: url('https://cvr.ac.in/p/p97667334684823/IMG_0843.jpg');"></div>
+                         <div class="card-content">
+                            <h3><i class="fas fa-users icon-left"></i>Vibrant Campus Life</h3>
+                            <p>Engaging student clubs, cultural events, sports facilities, and hostel amenities.</p>
+                        </div>
+                    </div>
+                     <div class="highlight-card animate-on-scroll" style="animation-delay: 0.45s;">
+                         <!-- IMPORTANT: Replace with relevant CVR image -->
+                        <div class="card-image" style="background-image: url('https://cvr.ac.in/p/p9766733468479/IMG_1101.jpg');"></div>
+                         <div class="card-content">
+                            <h3><i class="fas fa-flask icon-left"></i>Research & Innovation</h3>
+                            <p>Dedicated research centers, funding opportunities, and industry collaborations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- Departments Snippet Section -->
+        <section id="dept-snippet" class="content-section">
+            <div class="section-container animate-on-scroll">
+                <h2>Explore Our Departments</h2>
+                <p>Offering a wide range of undergraduate and postgraduate programs in engineering and technology, equipped with modern labs and guided by expert faculty.</p>
+                <div class="dept-links">
+                    <a href="#" class="dept-badge">CSE</a>
+                    <a href="#" class="dept-badge">ECE</a>
+                    <a href="#" class="dept-badge">EEE</a>
+                    <a href="#" class="dept-badge">Mechanical</a>
+                    <a href="#" class="dept-badge">Civil</a>
+                    <a href="#" class="dept-badge">IT</a>
+                    <a href="#" class="dept-badge">CSE (AI&ML)</a>
+                     <a href="#departments" class="dept-badge more">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact">
+            <div class="section-container footer-grid">
+                 <div class="footer-col about">
+                     <h4>CVR College of Engineering</h4>
+                     <p>Vastunagar, Mangalpalli (V), Ibrahimpatnam (M), Rangareddy (D), Telangana 501510</p>
+                      <p>Affiliated to JNTUH, Approved by AICTE</p>
+                 </div>
+                  <div class="footer-col links">
+                     <h4>Quick Links</h4>
+                     <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#academics">Academics</a></li>
+                        <li><a href="#departments">Departments</a></li>
+                        <li><a href="#placements">Placements</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                     </ul>
+                 </div>
+                 <div class="footer-col contact-info">
+                     <h4>Get In Touch</h4>
+                     <p><i class="fas fa-phone"></i> +91-XXXXXXXXXX</p> <!-- Add phone -->
+                     <p><i class="fas fa-envelope"></i> principal@cvr.ac.in</p> <!-- Add email -->
+                     <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                     </div>
+                 </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="current-year"></span> CVR College of Engineering. All Rights Reserved.</p>
+                 <!-- Simple script to update year -->
+                <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+            </div>
+        </footer>
+
+    </div> <!-- End page-container -->
+
+    <!-- Basic JS needed for Mobile Menu Toggle (Add this if you want a functional hamburger) -->
+    <!--
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        })
+    </script>
+    -->
+
+</body>
+</html>
